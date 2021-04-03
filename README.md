@@ -3,5 +3,5 @@
 Download flatcar installer and ingition.json by doing:
 
 ```
-curl -o - https://bit.ly/39E3W4g | bash
+curl -L -o - https://bit.ly/39E3W4g | bash
 ```

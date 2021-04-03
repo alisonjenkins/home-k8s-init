@@ -9,5 +9,14 @@
         ]
       }
     ]
+  },
+  "storage": {
+    "files": [
+      {
+        "filesystem": "root",
+        "path": "/etc/sudoers.d/flatcar",
+        "source": "https://raw.githubusercontent.com/alanjjenkins/home-k8s-init/master/files/sudo/flatcar"
+      }
+    ]
   }
 }
