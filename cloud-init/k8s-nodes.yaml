@@ -1,0 +1,9 @@
+#cloud-config
+users:
+  - name: alan
+    gecos: Alan Jenkins
+    primary_group: alan
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINqNVcWqkNPa04xMXls78lODJ21W43ZX6NlOtFENYUGF
+    lock_passwd: true
