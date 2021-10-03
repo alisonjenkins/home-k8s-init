@@ -1,0 +1,28 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: home-cluster
+spec:
+  # telemetry:
+  #   enabled: true
+  hosts:
+  - role: controller
+    installFlags:
+    - --debug
+    ssh:
+      address: 192.168.8.2
+      user: alan
+  - role: worker
+    installFlags:
+    - --debug
+    ssh:
+      address: 192.168.8.3
+      user: alan
+  # - role: controller
+  #   ssh:
+  #     address: 192.168.8.4
+  #     user: alan
+  # - role: worker
+  #   ssh:
+  #     address: 192.168.8.20
+  #     user: alan
