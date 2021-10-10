@@ -1,0 +1,5 @@
+flux_git_repo_branch              = "main"
+flux_git_repo_owner               = "alanjjenkins"
+flux_git_repo_name                = "home-cluster"
+flux_github_repository_visibility = "public"
+flux_git_repository_target_path   = "cluster/base/flux-system"

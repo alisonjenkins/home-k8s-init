@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: juliohm-cifs-volumedriver-installer
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: juliohm-cifs-volumedriver-installer
+  template:
+    metadata:
+      name: juliohm-cifs-volumedriver-installer
+      labels:
+        app: juliohm-cifs-volumedriver-installer
+    spec:
+      containers:
+        - image: juliohm/kubernetes-cifs-volumedriver-installer:2.4
+          name: flex-deploy
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /flexmnt
+              name: flexvolume-mount
+      volumes:
+        - name: flexvolume-mount
+          hostPath:
+            path: /usr/libexec/kubernetes/kubelet-plugins/volume/exec/

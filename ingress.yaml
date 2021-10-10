@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+  name: ut2004-webadmin
+  namespace: ut2004
+spec:
+  rules:
+    - host: ut2004.home.alan-jenkins.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: ut2004-webadmin
+              port:
+                name: http
+          path: /
+          pathType: Prefix

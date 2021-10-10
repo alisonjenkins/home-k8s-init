@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ut2004
+  namespace: ut2004
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ut2004
+  template:
+    metadata:
+      labels:
+        name: ut2004
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 1.1.1.1
+          - 1.0.0.1
+          - 8.8.8.8
+      containers:
+        - name: ut2004
+          image: phasecorex/ut2004-server
+          ports:
+            - name: game-port
+              protocol: UDP
+              containerPort: 7777
+            - name: query-port
+              protocol: UDP
+              containerPort: 7778
+            - name: gamespy-query
+              protocol: UDP
+              containerPort: 7787
+            - name: webadmin
+              containerPort: 8080
+          env:
+            - name: "CD_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: ut2004-cd-key
+                  key: cdkey
+            - name: "PUID"
+              value: "1000"
+            - name: "PGID"
+              value: "1000"
+            - name: "TZ"
+              value: "Europe/London"
+            - name: "DOWNLOAD_DATA"
+              value: "true"
+            - name: "SERVER_START_COMMAND"
+              value: "DM-Antalus?game=xGame.xDeathMatch"
+            - name: "SERVER_START_EXTRAS"
+              value: "?Mutator=UT2Vote61.UT2VoteX"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: "data"
+          emptyDir:
+
+

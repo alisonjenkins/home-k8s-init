@@ -1,0 +1,18 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: "podinfo"
+  namespace: test
+
+spec:
+  rules:
+    - host: podinfo.home.alan-jenkins.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-podinfo
+                port:
+                  name: http

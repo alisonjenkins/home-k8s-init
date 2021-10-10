@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: ut2004-webadmin
+  name: ut2004-webadmin
+  namespace: ut2004
+spec:
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: webadmin
+    port: 80
+    protocol: TCP
+    targetPort: webadmin
+  selector:
+    name: ut2004
